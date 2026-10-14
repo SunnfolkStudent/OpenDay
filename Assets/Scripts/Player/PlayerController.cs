@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
    public float moveSpeed;
    public float jumpSpeed;
+   public bool canMove;
+   private float _jumpTimer;
 
    public bool isGrounded;
    public Transform groundCheck;
@@ -18,11 +20,15 @@ public class PlayerController : MonoBehaviour
    {
       _input = GetComponent<InputManager>();
       _rb = GetComponent<Rigidbody2D>();
+      canMove = true;
    }
 
    private void FixedUpdate()
    {
-      _rb.linearVelocityX = _input.horizontal * moveSpeed;
+      if (canMove)
+      {
+         _rb.linearVelocityX = _input.horizontal * moveSpeed;
+      }
    }
 
    private void Update()
@@ -32,6 +38,10 @@ public class PlayerController : MonoBehaviour
       {
          _rb.gravityScale = 0;
          _rb.linearVelocityY = jumpSpeed;
+      }
+      else
+      {
+         _rb.gravityScale = 1;
       }
    }
 
