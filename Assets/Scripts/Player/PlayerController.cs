@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
    public float airFriction = 0.003f;
    private Vector2 _currentVelocity;
    private float _moveSpeed;
+   private bool _isFacingRight;
+   private int moveDirection;
    
    [Header("Jumping")] 
    public float jumpForce = 10f;
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
       
       _isDead = false;
       _isHurt = false;
+      _isFacingRight = true;
    }
 
    private void Update()
@@ -100,7 +103,21 @@ public class PlayerController : MonoBehaviour
 
    private void Flip()
    {
-      //flip sprite;
+      if (_input.moveVector.x > 0)
+      {
+         moveDirection = 1;
+      }
+
+      if (_input.moveVector.x < 0)
+      {
+         moveDirection = -1;
+      }
+      _isFacingRight = _input.moveVector.x < 0;
+      
+      if (_input.moveVector.x != 0 && transform.localScale.x != _input.moveVector.x) 
+      { 
+         transform.localScale = new Vector3(moveDirection, transform.localScale.y, transform.localScale.z);
+      }
    }
    private void UpdateJumping()
    {
