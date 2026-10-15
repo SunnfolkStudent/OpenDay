@@ -15,7 +15,7 @@ public class EnemyPatrol : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
         if (DetectedWallOrFall())
         {
