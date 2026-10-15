@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 503263820}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fallcheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 1561331409}
   - component: {fileID: 1561331408}
   - component: {fileID: 1561331407}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dynamic Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -856,7 +856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638547127}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wallcheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,6 +886,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 895955056779069511, guid: 1d43c4e42bd5d1e45a80a104148317ad, type: 3}
+      propertyPath: maxJumps
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 895955056779069511, guid: 1d43c4e42bd5d1e45a80a104148317ad, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 895955056779069511, guid: 1d43c4e42bd5d1e45a80a104148317ad, type: 3}
+      propertyPath: hurtSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5593427578612597981, guid: 1d43c4e42bd5d1e45a80a104148317ad, type: 3}
       propertyPath: m_Name
       value: Player

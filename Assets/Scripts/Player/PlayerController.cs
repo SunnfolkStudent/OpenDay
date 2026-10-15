@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
    public float jumpTimeCounter;
    public float jumpTime = 0.25f;
+   //public int maxJumps;
+   //private int _jumps;
 
    private float _coyoteTimeCounter;
    private bool _isCoyoteTime;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
       UpdateJumping();
       UpdateAnimation();
       Flip();
+      Attack();
       
       isGrounded = Physics2D.OverlapBox(groundCheck.position, groundBoxSize,0f, whatIsGround);
       
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
       if (isGrounded && _rb.linearVelocityY < 0f)
       {
          _isJumping = false;
+         //_jumps = maxJumps;
       }
    }
    private void FixedUpdate()
@@ -103,6 +107,19 @@ public class PlayerController : MonoBehaviour
       {
          _animator.Play("Player_Jump");
       }
+   }
+
+   private void Attack()
+   {
+      if (!Physics2D.OverlapCircle(groundCheck.position, 0.2f, LayerMask.GetMask("Enemy"))) return;
+      
+      var enemyColliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.2f, LayerMask.GetMask("Enemy"));
+
+      foreach (var enemy in enemyColliders)
+      {
+         Destroy(enemy.gameObject);
+      }
+      _rb.linearVelocityY = jumpForce/1.3f;
    }
    
    #region Movement
@@ -137,12 +154,23 @@ public class PlayerController : MonoBehaviour
          _coyoteTimeCounter = 0f;
       }
 
-      if (_input.jumpPressed && (isGrounded || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime)))
+      if (_input.jumpPressed && (isGrounded || (_coyoteTimeCounter > 0.03f && _coyoteTimeCounter < coyoteTime )))
       {
          _rb.linearVelocity = Vector2.up * jumpForce;
          jumpTimeCounter = jumpTime;
          _isJumping = true;
          PlayRandomClip(jumpSounds);
+      }
+      /*else if (_input.jumpPressed && _jumps > 0)
+      {
+         _rb.linearVelocity = Vector2.up * jumpForce;
+         _jumps--;
+        // PlayRandomClip(jumpSounds);
+         Debug.Log("jump2");
+      }*/
+      else if (_input.jumpReleased)
+      {
+         jumpTimeCounter = 0f;
       }
 
       if (_input.jumpValue < 0f)
