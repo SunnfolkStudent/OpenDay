@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
    public float damageCooldown = 1f;
    private float _damageCooldownTimer;
    private bool _isDead;
-   private bool _isHurt;
+   private float _deathTime;
    
 
    [Header("Audio")] 
@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
       _animator = GetComponent<Animator>();
       
       _isDead = false;
-      _isHurt = false;
       _isFacingRight = true;
    }
 
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour
    private void UpdateAnimation()
    {
       if (_isDead) return;
-      if (_isHurt) return;
+      if (_deathTime > Time.time) return;
       if (isGrounded && _input.moveVector.x != 0f)
       {
          _animator.Play("Player_Walk");
@@ -179,7 +178,7 @@ public class PlayerController : MonoBehaviour
    }
    #endregion
    #region Damage
-   private void OnCollisionEnter2D(Collision2D other)
+   private void OnCollisionStay2D(Collision2D other)
    {
       if (other.transform.CompareTag("Enemy"))
       {
@@ -187,7 +186,7 @@ public class PlayerController : MonoBehaviour
       }
    }
 
-   private static void RestartScene()
+   public void RestartScene()
    {
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
    }
@@ -198,16 +197,17 @@ public class PlayerController : MonoBehaviour
          if (_isDead) return;
          playerHealth-= 1;
          _damageCooldownTimer = Time.time + damageCooldown;
+         _deathTime = Time.time + 0.5f;
          _animator.Play("Player_Hurt");
          PlayRandomClip(hurtSounds);
          
       }
-
       if (playerHealth <= 0)
       {
-         _audioSource.PlayOneShot(deathSound); //might not work because of RestartScene()
-         RestartScene(); //if animation, make this an animation event instead
          _isDead = true;
+         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
+         //RestartScene(); //if animation, make this an animation event, if not uncomment this
+         _animator.Play("Player_Death");
       }
    }
    #endregion
