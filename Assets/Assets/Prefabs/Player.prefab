@@ -222,9 +222,10 @@ MonoBehaviour:
   groundBoxSize: {x: 0.8, y: 0.2}
   playerHealth: 10
   damageCooldown: 1
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: b3d2aac712c635a40a1734805388e567, type: 3}
   jumpSounds: []
-  hurtSounds: []
+  hurtSounds:
+  - {fileID: 8300000, guid: 81dc92cf3b9735c4fa3b06058c64ee8e, type: 3}
   walkSounds: []
 --- !u!114 &2557875846647065191
 MonoBehaviour:

@@ -86,11 +86,18 @@ public class PlayerController : MonoBehaviour
 
    private void UpdateAnimation()
    {
-      if (_isDead) return;
       if (_deathTime > Time.time) return;
-      if (isGrounded && _input.moveVector.x != 0f)
+      if (_isDead)
+      {
+         _animator.Play("Player_Death");
+      }
+      else if (isGrounded && _input.moveVector.x != 0f)
       {
          _animator.Play("Player_Walk");
+      }
+      else if (_input.moveVector.x == 0f)
+      {
+         _animator.Play("Player_Idle");
       }
       else if (!isGrounded && _isJumping)
       {
@@ -202,12 +209,10 @@ public class PlayerController : MonoBehaviour
          PlayRandomClip(hurtSounds);
          
       }
-      if (playerHealth <= 0)
+      if (playerHealth <= 0 && !_isDead)
       {
          _isDead = true;
-         //AudioSource.PlayClipAtPoint(deathSound, transform.position);
-         //RestartScene(); //if animation, make this an animation event, if not uncomment this
-         _animator.Play("Player_Death");
+         AudioSource.PlayClipAtPoint(deathSound, transform.position);
       }
    }
    #endregion
