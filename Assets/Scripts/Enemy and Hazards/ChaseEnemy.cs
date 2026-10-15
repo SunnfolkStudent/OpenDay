@@ -11,11 +11,14 @@ public class ChaseEnemy : MonoBehaviour
     public Transform target;
     
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
     private Vector2 _moveDirection;
     
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _animator.Play("Chase");
     }
 
     private void FixedUpdate()          
