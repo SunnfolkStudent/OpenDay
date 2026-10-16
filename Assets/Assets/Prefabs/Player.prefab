@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2557875846647065191}
   - component: {fileID: 3962002516052254947}
   - component: {fileID: 2372458250392509533}
+  - component: {fileID: 2691098574965403484}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -222,10 +223,9 @@ MonoBehaviour:
   groundBoxSize: {x: 0.8, y: 0.2}
   playerHealth: 10
   damageCooldown: 1
-  deathSound: {fileID: 8300000, guid: b3d2aac712c635a40a1734805388e567, type: 3}
+  deathSound: {fileID: 0}
   jumpSounds: []
-  hurtSounds:
-  - {fileID: 8300000, guid: 81dc92cf3b9735c4fa3b06058c64ee8e, type: 3}
+  hurtSounds: []
   walkSounds: []
 --- !u!114 &2557875846647065191
 MonoBehaviour:
@@ -362,3 +362,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2691098574965403484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593427578612597981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83844a112c1857244bc995e8fe808bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthController
+  target: {fileID: 895955056779069511}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
