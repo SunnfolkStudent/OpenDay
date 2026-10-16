@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
    public float airFriction = 0.003f;
    private Vector2 _currentVelocity;
    private float _moveSpeed;
-   private bool _isFacingRight;
    private int moveDirection;
+   private bool _canMove;
    
    [Header("Jumping")] 
    public float jumpForce = 10f;
@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
 
    public float jumpTimeCounter;
    public float jumpTime = 0.25f;
-   //public int maxJumps;
-   //private int _jumps;
 
    private float _coyoteTimeCounter;
    private bool _isCoyoteTime;
@@ -64,15 +62,18 @@ public class PlayerController : MonoBehaviour
       _animator = GetComponent<Animator>();
       
       _isDead = false;
-      _isFacingRight = true;
+      _canMove = true;
    }
 
    private void Update()
    {
-      UpdateJumping();
       UpdateAnimation();
       Flip();
       Attack();
+      if (_canMove)
+      {
+         UpdateJumping();
+      }
       
       isGrounded = Physics2D.OverlapBox(groundCheck.position, groundBoxSize,0f, whatIsGround);
       
@@ -85,7 +86,10 @@ public class PlayerController : MonoBehaviour
    }
    private void FixedUpdate()
    {
-      UpdateMovement();
+      if(_canMove)
+      {
+         UpdateMovement();
+      }
    }
 
    private void UpdateAnimation()
@@ -135,7 +139,6 @@ public class PlayerController : MonoBehaviour
       {
          moveDirection = -1;
       }
-      _isFacingRight = _input.moveVector.x < 0;
       
       if (_input.moveVector.x != 0 && transform.localScale.x != _input.moveVector.x) 
       { 
@@ -219,6 +222,11 @@ public class PlayerController : MonoBehaviour
       {
          TakeDamage();
       }
+
+      if (other.transform.CompareTag("Hazard"))
+      {
+         TakeDamage();
+      }
    }
 
    public void RestartScene()
@@ -240,6 +248,7 @@ public class PlayerController : MonoBehaviour
       if (playerHealth <= 0 && !_isDead)
       {
          _isDead = true;
+         _canMove = false;
          AudioSource.PlayClipAtPoint(deathSound, transform.position);
       }
    }
