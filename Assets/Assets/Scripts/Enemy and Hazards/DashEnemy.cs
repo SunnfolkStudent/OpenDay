@@ -22,17 +22,15 @@ public class DashEnemy : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 1.2f, whatIsGround))
         {
-            print("lvl1");
             if(!_canAttack && Vector2.Distance(_target.position, transform.position) < sightRange)
             {
-                print("lvl2");
                 _attackDirection = Vector3.Normalize(_target.position - transform.position);
                 _canAttack = true;
                 _isAttacking = true;
             }
             else if (Vector2.Distance(_target.position, transform.position) > sightRange && _isAttacking)
             {
-                Destroy(gameObject, 0.2f);
+                Destroy(gameObject, 0.5f);
             }
         }
         
