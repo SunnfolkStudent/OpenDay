@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8168002648539690341}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 185553660413824855}
   - component: {fileID: 4835694484533009856}
   - component: {fileID: 6927687056129576253}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PatrolEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -210,6 +210,7 @@ MonoBehaviour:
     m_Bits: 64
   wallCheck: {fileID: 4173449063002500731}
   fallCheck: {fileID: 8168002648539690341}
+  deathSFX: {fileID: 8300000, guid: ba3940211806dcb4d92bf9e179a8cff0, type: 3}
 --- !u!95 &6927687056129576253
 Animator:
   serializedVersion: 7
@@ -241,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4173449063002500731}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

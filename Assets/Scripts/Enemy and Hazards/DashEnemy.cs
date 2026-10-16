@@ -10,10 +10,12 @@ public class DashEnemy : MonoBehaviour
     private bool _canAttack;
     private Vector3 _attackDirection;
     private Transform _target;
+    private Animator _animator;
 
     private void Start()
     {
-        _target = GameObject.Find("PatrolEnemy").transform;
+        _target = GameObject.Find("Player").transform;
+        _animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -34,6 +36,11 @@ public class DashEnemy : MonoBehaviour
         if (_canAttack)
         {
             transform.position += _attackDirection * (moveSpeed * Time.deltaTime);
+            _animator.Play("dash");
+        }
+        else
+        {
+            _animator.Play("idle");
         }
     }
     

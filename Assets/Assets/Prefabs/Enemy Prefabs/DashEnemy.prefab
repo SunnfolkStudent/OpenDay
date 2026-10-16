@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5937229966454642888}
   - component: {fileID: 359878734850741744}
   - component: {fileID: 61450649228794561}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DashEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 5
-  sightRange: 6
+  sightRange: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
