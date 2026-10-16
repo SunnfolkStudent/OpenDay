@@ -11,6 +11,7 @@ public class DashEnemy : MonoBehaviour
     private Vector3 _attackDirection;
     private Transform _target;
     private Animator _animator;
+    private bool _isAttacking;
 
     private void Start()
     {
@@ -19,19 +20,24 @@ public class DashEnemy : MonoBehaviour
     }
     private void Update()
     {
-        if (!Physics2D.OverlapCircle(transform.position, 0.2f, whatIsGround))
+        if (Physics2D.OverlapCircle(transform.position, 1.2f, whatIsGround))
         {
+            print("lvl1");
             if(!_canAttack && Vector2.Distance(_target.position, transform.position) < sightRange)
             {
+                print("lvl2");
                 _attackDirection = Vector3.Normalize(_target.position - transform.position);
                 _canAttack = true;
+                _isAttacking = true;
+            }
+            else if (Vector2.Distance(_target.position, transform.position) > sightRange && _isAttacking)
+            {
+                Destroy(gameObject, 0.2f);
             }
         }
-        else
-        {
-            Destroy(gameObject, 0.5f);
-            _canAttack = false;
-        }
+        
+        
+        
 
         if (_canAttack)
         {
