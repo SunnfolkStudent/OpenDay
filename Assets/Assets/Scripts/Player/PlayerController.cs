@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour
       if (isGrounded && _rb.linearVelocityY < 0f)
       {
          _isJumping = false;
-         //_jumps = maxJumps;
       }
    }
    private void FixedUpdate()
@@ -218,12 +217,7 @@ public class PlayerController : MonoBehaviour
    #region Damage
    private void OnCollisionStay2D(Collision2D other)
    {
-      if (other.transform.CompareTag("Enemy"))
-      {
-         TakeDamage();
-      }
-
-      if (other.transform.CompareTag("Hazard"))
+      if (other.transform.CompareTag("Enemy") || other.transform.CompareTag("Hazard"))
       {
          TakeDamage();
       }
