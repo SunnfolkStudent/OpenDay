@@ -46,7 +46,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             _audioSource.pitch = Random.Range(0.8f, 1.2f);
             _audioSource.PlayOneShot(walkSfx);
-            sfxTimer = 1;
+            sfxTimer = 0.4f;
         }
     }
     

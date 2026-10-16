@@ -211,8 +211,8 @@ MonoBehaviour:
     m_Bits: 64
   wallCheck: {fileID: 4173449063002500731}
   fallCheck: {fileID: 8168002648539690341}
-  walkSfx: {fileID: 8300000, guid: ba3940211806dcb4d92bf9e179a8cff0, type: 3}
-  sfxTimer: 0.5
+  walkSfx: {fileID: 8300000, guid: fbe9ae342f3120e4e9bfcf3604685bed, type: 3}
+  sfxTimer: 0.4
 --- !u!95 &6927687056129576253
 Animator:
   serializedVersion: 7
@@ -248,7 +248,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
